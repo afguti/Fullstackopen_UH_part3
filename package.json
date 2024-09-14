@@ -1,0 +1,27 @@
+{
+  "name": "backend",
+  "version": "0.0.1",
+  "description": "This is a repository part of the Full Stack Open from University of Helsinki for Part3",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/afguti/Fullstackopen_UH_part3.git"
+  },
+  "author": "Angel Gutierrez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/afguti/Fullstackopen_UH_part3/issues"
+  },
+  "homepage": "https://github.com/afguti/Fullstackopen_UH_part3#readme",
+  "dependencies": {
+    "express": "^4.21.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}

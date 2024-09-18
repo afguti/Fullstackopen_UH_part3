@@ -1,7 +1,9 @@
 const express = require('express')
 const morgan = require('morgan')
+const cors = require('cors')
 const app = express()
 app.use(express.json())
+app.use(cors())
 
 app.use(morgan(function (tokens, req, res) {
   var ret = [
@@ -91,7 +93,7 @@ app.post('/api/persons', (request, response) => {
         id: generateId(),
     }
     persons = persons.concat(person)
-    console.log("Getting a POST request. Request body:",person)
+    //console.log("Getting a POST request. Request body:",person)
     response.json(person)
 })
 

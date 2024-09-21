@@ -53,6 +53,7 @@ app.get('/api/persons/:id', (request,response,next) => {
 })
 
 app.delete('/api/persons/:id', (request,response,next) => {
+    console.log("ID:",request.params.id)
     Person.findByIdAndDelete(request.params.id)
         .then(result => {
             response.status(204).end()
@@ -91,8 +92,13 @@ app.post('/api/persons', (request, response) => {
     })
 })
 
+const unknownEndpoint = (request, response) => {
+    response.status(404).send({ error: 'unknown endpoint' })
+  }
+app.use(unknownEndpoint) //This middleware handle the unsupported routes
+
 const errorHandler = (error,request,response,next) => {
-    console.log(error.message)
+    console.log("ERROR MSG:",error.message)
     if (error.name === 'CastError') {
         return response.status(400).send({ error: "malformatted id"})
     }

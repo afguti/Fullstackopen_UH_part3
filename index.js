@@ -32,10 +32,12 @@ app.get('/api/persons', (request,response) => {
 
 app.get('/info', (request,response) => {
     //persons is not defined!!!
-    response.send(
-        `<p>Phonebook has info for ${persons.length} people</p>
-        <p>${Date()}</p>`
-    )
+    Person.find({}).then(persons => {
+        response.send(
+            `<p>Phonebook has info for ${persons.length} people</p>
+            <p>${Date()}</p>`
+        )
+    }) 
 })
 
 app.get('/api/persons/:id', (request,response,next) => {

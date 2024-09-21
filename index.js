@@ -31,6 +31,7 @@ app.get('/api/persons', (request,response) => {
 })
 
 app.get('/info', (request,response) => {
+    //persons is not defined!!!
     response.send(
         `<p>Phonebook has info for ${persons.length} people</p>
         <p>${Date()}</p>`
@@ -44,10 +45,14 @@ app.get('/api/persons/:id', (request,response) => {
 })
 
 app.delete('/api/persons/:id', (request,response) => {
-    const id = request.params.id
-    persons = persons.filter(person => person.id !== id)
-    console.log("Getting a DELETE request")
-    response.status(204).end()
+    Person.findByIdAndDelete(request.params.id)
+        .then(result => {
+            response.status(204).end()
+        })
+        .catch(error => {
+            console.log("Error:",error)
+            response.status(400).send({ error: 'malformatted id'})
+        })
 })
 
 const generateId = () => {
